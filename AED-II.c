@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "/home/danton/Downloads/lista.h"
-#include "/home/danton/Downloads/fila.h"
+#include "lista.h"
+#include "fila.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 int menu(int option)
