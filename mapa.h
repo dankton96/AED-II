@@ -11,8 +11,8 @@
 
 struct mapa {
 	char** matriz;
-	char *ptrlinhas;
-	char *ptrcolunas;
+	//char *ptrlinhas;
+	//char *ptrcolunas;
 	int linhas;
 	int colunas;
 };
