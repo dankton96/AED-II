@@ -59,6 +59,8 @@ void imprimemapa(MAPA* m) {
 						imprimeparte(desenhopilula, parte);
 						break;
 					case PAREDE_VERTICAL:
+						imprimeparte(desenhoparede, parte);
+						break;
 					case PAREDE_HORIZONTAL:
 						imprimeparte(desenhoparede, parte);
 						break;
