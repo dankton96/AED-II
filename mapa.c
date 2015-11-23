@@ -23,10 +23,10 @@ void lemapa(MAPA* m) {
 }
 
 void alocamapa(MAPA* m) {
-	m->matriz = malloc(sizeof(char*) * m->linhas);
+	m->matriz =(char*)malloc(sizeof(char)* m->linhas);
 
 	for(i = 0; i < m->linhas; i++) {
-		m->matriz[i] = malloc(sizeof(char) * m->colunas + 1);
+		m->matriz[i] = (char*)malloc(sizeof(char) * m->colunas + 1);
 	}
 }
 
