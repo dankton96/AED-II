@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 #include "time.h"
 #include "fogefoge.h"
 #include "mapa.h"
@@ -8,7 +9,6 @@
 MAPA m;
 POSICAO heroi;
 int tempilula = 0;
-int i,j;
 
 int acabou() {
 	POSICAO pos;
@@ -71,7 +71,7 @@ int praondefantasmavai(int xatual, int yatual,
 	};
 
 	srand(time(0));
-	for(i = 0; i < 10; i++) {
+	for(int i = 0; i < 10; i++) {
 		int posicao = rand() % 4;
 
 		if(podeandar(&m, FANTASMA, opcoes[posicao][0], opcoes[posicao][1])) {
@@ -89,8 +89,8 @@ void fantasmas() {
 
 	copiamapa(&copia, &m);
 
-	for(i = 0; i < copia.linhas; i++) {
-		for(j = 0; j < copia.colunas; j++) {
+	for(int i = 0; i < copia.linhas; i++) {
+		for(int j = 0; j < copia.colunas; j++) {
 			if(copia.matriz[i][j] == FANTASMA) {
 
 				int xdestino;
@@ -135,6 +135,7 @@ void explodepilula() {
 
 int main() {
 
+    setlocale(LC_ALL,"portuguese");
 	lemapa(&m);
 	encontramapa(&m, &heroi, HEROI);
 
@@ -142,8 +143,7 @@ int main() {
 		printf("Pílula: %s\n", (tempilula ? "SIM" : "NÃO"));
 		imprimemapa(&m);
 
-		char comando;
-		scanf(" %c", &comando);
+		char comando=getch();
 
 		if(ehdirecao(comando)) move(comando);
 		if(comando == BOMBA) explodepilula();
