@@ -10,9 +10,7 @@
 #define PILULA 'P'
 
 struct mapa {
-	//char** matriz;
-	char *ptrlinhas;
-	char **ptrcolunas;
+	char** matriz;
 	int linhas;
 	int colunas;
 };
