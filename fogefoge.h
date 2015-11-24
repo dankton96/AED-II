@@ -1,4 +1,3 @@
-
 #ifndef _FOGEFOGE_H_
 #define _FOGEFOGE_H_
 
@@ -8,23 +7,10 @@
 #define ESQUERDA 'a'
 #define BOMBA 'b'
 
-int acabou()
-{
-    if()
-};
-void Move(char direcao)
-{
-  if(direcao==ESQUERDA){}
-}
+int acabou();
+void move(char direcao);
 
-int ehdirecao(char direcao)
-{
-return
-		direcao == ESQUERDA ||
-		direcao == CIMA ||
-		direcao == BAIXO ||
-		direcao == DIREITA;
-};
+int ehdirecao(char direcao);
 void fantasmas();
 void explodepilula();
 void explodepilula2(int x, int y, int somax, int somay, int qtd);
