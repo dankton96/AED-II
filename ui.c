@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "mapa.h"
 
-int i,j,parte;
-
 char desenhoparede[4][7] = {
 	{"......" },
 	{"......" },
@@ -18,10 +16,10 @@ char desenhofantasma[4][7] = {
 };
 
 char desenhoheroi[4][7] = {
-	{" .--.  " },
-	{"/ _.-' " },
-	{"\\___  " },
-	{" '--/  " }
+	{" .--. "  },
+	{"/ _.-'"  },
+	{"\\  '-." },
+	{" '--' "  }
 };
 
 char desenhopilula[4][7] = {
@@ -43,10 +41,10 @@ void imprimeparte(char desenho[4][7], int parte) {
 }
 
 void imprimemapa(MAPA* m) {
-	for(i = 0; i < m->linhas; i++) {
+	for(int i = 0; i < m->linhas; i++) {
 
-		for(parte = 0; parte < 4; parte++) {
-			for(j = 0; j < m->colunas; j++) {
+		for(int parte = 0; parte < 4; parte++) {
+			for(int j = 0; j < m->colunas; j++) {
 
 				switch(m->matriz[i][j]) {
 					case FANTASMA:
@@ -59,8 +57,6 @@ void imprimemapa(MAPA* m) {
 						imprimeparte(desenhopilula, parte);
 						break;
 					case PAREDE_VERTICAL:
-						imprimeparte(desenhoparede, parte);
-						break;
 					case PAREDE_HORIZONTAL:
 						imprimeparte(desenhoparede, parte);
 						break;
