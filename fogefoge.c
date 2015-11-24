@@ -5,11 +5,11 @@
 #include "fogefoge.h"
 #include "mapa.h"
 #include "ui.h"
-
+/////////////////////////////////////////////////////////////////////
 MAPA m;
 POSICAO heroi;
-int tempilula = 0;
-
+int tempilula = 1;
+/////////////////////////////////////////////////////////////////////
 int acabou() {
 	POSICAO pos;
 
@@ -19,7 +19,7 @@ int acabou() {
 	return ganhou || perdeu;
 
 }
-
+/////////////////////////////////////////////////////////////////////
 int ehdirecao(char direcao) {
 	return
 		direcao == ESQUERDA ||
@@ -27,7 +27,7 @@ int ehdirecao(char direcao) {
 		direcao == BAIXO ||
 		direcao == DIREITA;
 }
-
+/////////////////////////////////////////////////////////////////////
 void move(char direcao) {
 
 	int proximox = heroi.x;
@@ -59,7 +59,7 @@ void move(char direcao) {
 	heroi.x = proximox;
 	heroi.y = proximoy;
 }
-
+/////////////////////////////////////////////////////////////////////
 int praondefantasmavai(int xatual, int yatual,
 	int* xdestino, int* ydestino) {
 
@@ -83,7 +83,7 @@ int praondefantasmavai(int xatual, int yatual,
 
 	return 0;
 }
-
+/////////////////////////////////////////////////////////////////////
 void fantasmas() {
 	MAPA copia;
 
@@ -130,7 +130,7 @@ void explodepilula() {
 	explodepilula2(heroi.x, heroi.y, 1, 0, 3);
 	explodepilula2(heroi.x, heroi.y, -1, 0, 3);
 
-	tempilula = 0;
+	tempilula = 1;
 }
 
 int main() {
