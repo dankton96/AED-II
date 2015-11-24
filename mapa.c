@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "mapa.h"
 #include <string.h>
- int i,j;
 
 void lemapa(MAPA* m) {
 	FILE* f;
@@ -15,7 +14,7 @@ void lemapa(MAPA* m) {
 	fscanf(f, "%d %d", &(m->linhas), &(m->colunas));
 	alocamapa(m);
 
-	for(i = 0; i < m->linhas; i++) {
+	for(int i = 0; i < m->linhas; i++) {
 		fscanf(f, "%s", m->matriz[i]);
 	}
 
@@ -23,12 +22,10 @@ void lemapa(MAPA* m) {
 }
 
 void alocamapa(MAPA* m) {
-	//m->matriz =(char*)malloc(sizeof(char)* m->linhas);
-	m->ptrcolunas=&m->ptrlinhas;
-	m->ptrcolunas->ptrlinhas =(char*)malloc(sizeof(char)* m->linhas);
+	m->matriz = malloc(sizeof(char*) * m->linhas);
 
-	for(i = 0; i < m->linhas; i++) {
-		m->matriz[i] = (char*)malloc(sizeof(char) * m->colunas + 1);
+	for(int i = 0; i < m->linhas; i++) {
+		m->matriz[i] = malloc(sizeof(char) * m->colunas + 1);
 	}
 }
 
@@ -36,14 +33,14 @@ void copiamapa(MAPA* destino, MAPA* origem) {
 	destino->linhas = origem->linhas;
 	destino->colunas = origem->colunas;
 	alocamapa(destino);
-	for(i = 0; i < origem->linhas; i++) {
+	for(int i = 0; i < origem->linhas; i++) {
 		strcpy(destino->matriz[i], origem->matriz[i]);
 	}
 }
 
 
 void liberamapa(MAPA* m) {
-	for(i = 0; i < m->linhas; i++) {
+	for(int i = 0; i < m->linhas; i++) {
 		free(m->matriz[i]);
 	}
 
@@ -53,8 +50,8 @@ void liberamapa(MAPA* m) {
 
 int encontramapa(MAPA* m, POSICAO* p, char c) {
 
-	for(i = 0; i < m->linhas; i++) {
-		for(j = 0; j < m->colunas; j++) {
+	for(int i = 0; i < m->linhas; i++) {
+		for(int j = 0; j < m->colunas; j++) {
 			if(m->matriz[i][j] == c) {
 				p->x = i;
 				p->y = j;
