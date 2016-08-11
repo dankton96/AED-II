@@ -94,9 +94,15 @@ typedef class Aluno
                             }
                     }
             }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool IsEmpty()
+        {
+            return turma2.prev==turma2.act==turma2.next;
+        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void menu(People *turma0)
+void menu(Aluno *turma0)
 {
 
     char op;
@@ -137,10 +143,46 @@ void menu(People *turma0)
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void BurnInDisc()
+void BurnInDB(Aluno turma1, FILE *db1)
     {
-        FILE *db;
+        if(!turma1.IsEmpty())
+        {
+            while(turma1.act->prev!=NULL){turma1.act=turma1.act->prev;}
+            db1=fopen("database.txt","w+");
+            if(db==NULL){cout<<"Erro ao criar banco de dados"; return;}
+            else
+            {
+                while(turma1.act->next!=NULL)
+                {
+                fprintf(db1, "%s\t%s\t%s\t%i\t%f\t%f\n", turma1.act->name, turma1.act->address, turma1.act->tel, turma1.act->reg, turma.act->height, turma1.act->weight);
+                turma1.act=turma1.act->next;
+                }
+            }
+            fclose(db);
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ReadFromDB(Aluno turma2, FILE *db2)
+    {
+        db2=fopen("database.txt","w+");
+        if(db==NULL){cout<<"Erro ao criar banco de dados"; return;}
+        else
+        {
+            if(turma2.IsEmpty())
+            {
+                while(!feof(db2))
+                {
+                turma2.act=(Aluno*)malloc(sizeof(Aluno));
+                if(turma2->act==NULL){cout<<"Erro ao criar banco de dados";getch(); return;}
+                else
+                    {
+                        fscanf(db2, "%s\t%s\t%s\t%i\t%f\t%f\n", turma1.act->name, turma1.act->address, turma1.act->tel, turma1.act->reg, turma.act->height, turma1.act->weight);
+                        turma2.act->next;
+                    }
 
+                }
+            }
+        }
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(void)
