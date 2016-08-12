@@ -4,6 +4,7 @@
 #include <string>
 #include <string.h>
 #include <conio.h>
+#include <windows.h>
 
 using namespace std;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,8 +20,7 @@ void LimpaTela()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef class Aluno
 {
-    private:
-
+    protected:
     string name, addres, tel;
     int reg;
     float height, weight;
@@ -31,17 +31,20 @@ typedef class Aluno
         {
         act=next=prev=NULL;
         }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Setters
     void SetName(string text){name=text;}
     void SetHeight(float num){height=num;}
     void SetAddres(string text1){addres=text1;}
-    void SetReg(int num1){matricula=num1;}
+    void SetReg(int num1){reg=num1;}
     void SetTelephone(string text2)
         {
         if(text2[0]!='(' && text2[3]!=')' && text2[8]!='-'){tel=text2;}
         else{tel="error";}
         }
     void SetWeight(float num3){weight=num3;}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Getters
     string GetName()
             {
                 return name;
@@ -50,6 +53,23 @@ typedef class Aluno
             {
                 return height;
             }
+    string GetAddres()
+            {
+                return addres;
+            }
+    int GetReg()
+            {
+                return reg;
+            }
+    string GetTelephone()
+            {
+                return tel;
+            }
+    int GetWeight()
+            {
+                return weight;
+            }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void Apresentation()
             {
                 LimpaTela();
@@ -66,8 +86,8 @@ typedef class Aluno
                 string name1, addres1, tel1;
                 int reg1;
                 float height1, weight1;
-                next=(*Aluno)malloc(sizeof(Aluno));
-                if(next==NULL){"Falha ao alocar memoria. Abortando."; Sleep(3000); exit();}
+                next=(Aluno*)malloc(sizeof(Aluno));
+                if(next==NULL){"Falha ao alocar memoria. Abortando.\n"; system("pause"); exit(0);}
                 else
                     {
                         act=act->next;
@@ -80,24 +100,25 @@ typedef class Aluno
                         getline(cin, addres1);
                         cin.ignore();
                         getline(cin, tel1);
-                        act.SetReg(reg1);
-                        act.SetHeight(height1);
-                        act.SetWeight(weight1);
-                        act.SetName(name1);
-                        act.SetAddres(addres1);
+                        act->SetReg(reg1);
+                        act->SetHeight(height1);
+                        act->SetWeight(weight1);
+                        act->SetName(name1);
+                        act->SetAddres(addres1);
 ///////////////////////////////////////////////////////////////
-                        while(act.tel=="error")
+                        while(act->tel=="error")
                             {
                                 LimpaTela();
                                 cout<<"Numero de telefone invalido. Insira um numero valido no formato (XX)XXXX-XXXX:"<<endl;
-                                act.SetTelephone(tel1);
+                                act->SetTelephone(tel1);
+                                LimpaTela();
                             }
                     }
             }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool IsEmpty()
+bool IsEmpty(Aluno Turma)
         {
-            return turma2.prev==turma2.act==turma2.next;
+            return (Turma.prev)==(Turma.act)==(Turma.next);
         }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };
@@ -126,18 +147,18 @@ void menu(Aluno *turma0)
                 int MatrPesq;
                 cout<<"Insira a matricula do aluno desejado: ";
                 cin>>MatrPesq;
-                if(act->reg!=MatrPesq && act->next==NULL)
+                if(turma0->act->reg!=MatrPesq && turma0->act->next==NULL)
                 {
                     cout<<"Aluno nao cadastrado"; return;
                 }
                 else
                     {
-                        if(act->reg==MatrPesq)
+                        if(turma0->act->reg==MatrPesq)
                             {
                                 LimpaTela();
-                                act->Apresentation();
+                                turma0->act->Apresentation();
                             }
-                        else{act=act->next;}
+                        else{turma0->act=turma0->act->next;}
                     }
             }
     }
@@ -172,12 +193,17 @@ void ReadFromDB(Aluno turma2, FILE *db2)
             {
                 while(!feof(db2))
                 {
-                turma2.act=(Aluno*)malloc(sizeof(Aluno));
-                if(turma2->act==NULL){cout<<"Erro ao criar banco de dados";getch(); return;}
+                turma2.act=&turma2;
                 else
                     {
-                        fscanf(db2, "%s\t%s\t%s\t%i\t%f\t%f\n", turma1.act->name, turma1.act->address, turma1.act->tel, turma1.act->reg, turma.act->height, turma1.act->weight);
-                        turma2.act->next;
+                        fscanf(db2, "%s\t%s\t%s\t%i\t%f\t%f\n", turma1.act->next->name, turma1.act->address, turma1.act->tel, turma1.act->reg, turma.act->height, turma1.act->weight);
+                        turma2->next=(*Aluno)malloc(sizeof(Aluno));
+                        if(turma2.next==NULL){cout<<"Erro ao alocar proximo elemento"; return;}
+                        else
+                        {
+                            turma2.next->prev=turma2;
+                            turma2.act=turma2.act->next;
+                        }
                     }
 
                 }
