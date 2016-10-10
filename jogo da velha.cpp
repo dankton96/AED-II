@@ -143,20 +143,6 @@ typedef class Partida
 				if(rodada->map[x][y]=='x'){return true;}
 				if(rodada->map[x][y]=='o'){return true;}
 				else{return false;}
-				/*
-				int ib,jb;
-				ib=jb=0;
-				while(ib<3)
-				{
-					while(jb<3)
-					{
-						if(rodada->map[x][y]!='x' && rodada->map[x][y]!='o'){return false;}
-						jb++;
-					}
-					ib++;
-				}
-				return true;
-				*/
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*corrigir*/	bool IsFull()
