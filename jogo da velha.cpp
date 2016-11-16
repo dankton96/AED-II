@@ -18,9 +18,11 @@ void LimpaTela()
     #endif
 }
 
-typedef struct GameStage
+typedef class GameStage
 {
+	public:
 	char map[3][3];
+	GameStage(){for(int i=0;i<3;i++){for(int j=0;j<3;j++){map[i][j]=' ';}}}
 }GameStage;
 
 typedef class Partida
@@ -36,113 +38,9 @@ typedef class Partida
 				rodada=NULL;
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*corrigir*/	bool Win()
-			{
-				if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='x')
-					{
-						
-						p1++;
-						return true;
-					}
-				if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='o')
-					{
-						
-						p2++;
-						return true;
-					}
-				else{return false;}
-				
-			}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*corrigir*/	bool Busy(int x, int y)
 			{
-				if(rodada->map[x][y]=='x'){return true;}
-				if(rodada->map[x][y]=='o'){return true;}
-				else{return false;}
+				return !(rodada->map[x][y]==' ');
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*corrigir*/	bool IsFull()
@@ -155,23 +53,44 @@ typedef class Partida
 						{
 							if(!Busy(If,Jf)){return false;}
 							Jf++;
-						};
+						}
 					If++;
-				};
+				}
 				return true;
+			}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*corrigir*/	
+		bool Win()
+			{
+       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='x'){p1++; return true;} 
+       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='x'){p1++; return true;}
+       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='x'){p1++; return true;}
+       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='x'){p1++; return true;}
+       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='x'){p1++; return true;}
+       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='x'){p1++; return true;}
+       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='x'){p1++; return true;}
+       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='x'){p1++; return true;}
+       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='o'){p2++; return true;} 
+       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='o'){p2++; return true;}
+       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='o'){p2++; return true;}
+       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='o'){p2++; return true;}
+       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='o'){p2++; return true;}
+       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='o'){p2++; return true;}
+       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='o'){p2++; return true;}
+       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='o'){p2++; return true;}
+       else return false;
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*corrigir*/	bool Draw()
 			{
-				if(IsFull() && !Win()){return true;}
-				else{return false;}
+				/*if*/return (IsFull() && !Win());//{return true;}
+				//else{return false;}
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		bool GameOver()
 			{
-				if(Win()){return true;}
-				if(Draw()){return true;}
-				else return false;
+				if(Win() || Draw()){nrodadas++;}
+				return Win() || Draw();
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		void GameShow()
@@ -196,42 +115,51 @@ typedef class Partida
 		void Play()
 			{
 				int iplay,jplay;
-				while(!GameOver() && !Draw())
+				while(!GameOver())
 					{
-						nrodadas++;
+						//nrodadas++;
 						GameShow();
 						//if(!GameOver())
 						//{
-							cout<<endl<<endl<<"Player 1, escolha a linha(1-3) e coluna(1-3) da posicao: ";
-							cin>>iplay>>jplay;
+							cout<<endl<<endl<<"Player 1, escolha a linha(1-3) e coluna(1-3) da posicao[l-c]:";
+							//cin>>iplay>>jplay;
+							scanf("%d-%d", &iplay,&jplay);
+							//printf("\nEscolhido: %d-%d\n", iplay, jplay);
+							//sleep(3);
 							while(iplay<=0 || iplay>3 || jplay<=0 || jplay>3 || Busy(iplay,jplay))
 								{
 									LimpaTela();
 									GameShow();
 									cout<<endl<<endl
-									    <<"Posicao invalida ou indisponivel, insira a linha(1-3) e" 									    <<" coluna(1-3) de uma posicao que nao os estejam:";
+									    <<"Posicao invalida ou indisponivel, insira a linha(1-3) e" 									    <<" coluna(1-3) de uma posicao que nao os estejam [l-c]:";
 									cin.ignore();
-									cin>>iplay>>jplay;
-								};
+									//cin>>iplay>>jplay;
+									scanf("%d-%d", &iplay,&jplay);
+								}//;
 							rodada->map[iplay-1][jplay-1]='x';
 						//}
 						GameShow();
 						//if(!GameOver())
 						//{
-							cout<<endl<<endl<<"Player 2, escolha a linha(1-3) e coluna(1-3) da posicao: ";
-							cin>>iplay>>jplay;
+							cout<<endl<<endl<<"Player 2, escolha a linha(1-3) e coluna(1-3) da posicao[l-c]:";
+							//cin>>iplay>>jplay;
+							scanf("%d-%d", &iplay,&jplay);
+							//printf("\nEscolhido: %d-%d\n", iplay, jplay);
+							//sleep(3);
 							while(iplay<=0 || iplay>3 || jplay<=0 || jplay>3 || Busy(iplay,jplay))
 								{
 									LimpaTela();
 									GameShow();
 									cout<<endl<<endl
-									    <<"Posicao invalida ou indisponivel, insira a linha(1-3) e" 									    <<" coluna(1-3) de uma posicao que nao os estejam:";
+									    <<"Posicao invalida ou indisponivel, insira a linha(1-3) e" 									    <<" coluna(1-3) de uma posicao que nao os estejam [l-c]:";
 									cin.ignore();
-									cin>>iplay>>jplay;
-								};
+									//cin>>iplay>>jplay;
+									scanf("%d-%d", &iplay,&jplay);
+
+								}//;
 							rodada->map[iplay-1][jplay-1]='o';
 						//}
-					};
+					};//;
 					int aux=0;
 				while(aux<5)
 					{
@@ -244,7 +172,7 @@ typedef class Partida
 				cout<<"Placar: "<<endl
 				    <<"Player 1: "<<p1<<endl
 				    <<"Player 2: "<<p2<<endl
-				    <<"Total de rodadas jogadas"<<nrodadas<<endl;
+				    <<"Total de rodadas jogadas: "<<nrodadas<<endl;
 			
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -301,12 +229,6 @@ typedef class Partida
 						if(rodada==NULL){cout<<"Erro ao alocar memoria"<<endl;/*Save()*/; return;}
 						else
 							{
-								while(istage<3)
-								{
-									while(jstage<3){rodada->map[istage][jstage]=' ';jstage++;};
-									jstage=0;
-									istage++;
-								};
 								Play();
 								i++;
 							}
