@@ -38,9 +38,9 @@ typedef class Partida
 				rodada=NULL;
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*corrigir*/	bool Busy(int x, int y)
+		bool Busy(int x, int y)
 			{
-				return !(rodada->map[x][y]==' ');
+				return (rodada->map[x][y]!=' ');
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*corrigir*/	bool IsFull()
@@ -62,23 +62,23 @@ typedef class Partida
 /*corrigir*/	
 		bool Win()
 			{
-       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='x'){p1++; return true;} 
-       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='x'){p1++; return true;}
-       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='x'){p1++; return true;}
-       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='x'){p1++; return true;}
-       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='x'){p1++; return true;}
-       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='x'){p1++; return true;}
-       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='x'){p1++; return true;}
-       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='x'){p1++; return true;}
-       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='o'){p2++; return true;} 
-       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='o'){p2++; return true;}
-       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='o'){p2++; return true;}
-       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='o'){p2++; return true;}
-       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='o'){p2++; return true;}
-       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='o'){p2++; return true;}
-       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='o'){p2++; return true;}
-       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='o'){p2++; return true;}
-       else return false;
+			       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='x'){p1++; return true;} 
+			       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='x'){p1++; return true;}
+			       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='x'){p1++; return true;}
+			       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='x'){p1++; return true;}
+			       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='x'){p1++; return true;}
+			       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='x'){p1++; return true;}
+			       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='x'){p1++; return true;}
+			       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='x'){p1++; return true;}
+			       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='o'){p2++; return true;} 
+			       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='o'){p2++; return true;}
+			       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='o'){p2++; return true;}
+			       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='o'){p2++; return true;}
+			       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='o'){p2++; return true;}
+			       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='o'){p2++; return true;}
+			       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='o'){p2++; return true;}
+			       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='o'){p2++; return true;}
+			       else return false;
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*corrigir*/	bool Draw()
@@ -126,7 +126,7 @@ typedef class Partida
 							scanf("%d-%d", &iplay,&jplay);
 							//printf("\nEscolhido: %d-%d\n", iplay, jplay);
 							//sleep(3);
-							while(iplay<=0 || iplay>3 || jplay<=0 || jplay>3 || Busy(iplay,jplay))
+							while(iplay<=0 || iplay>3 || jplay<=0 || jplay>3 || Busy(iplay-1,jplay-1))
 								{
 									LimpaTela();
 									GameShow();
@@ -146,7 +146,7 @@ typedef class Partida
 							scanf("%d-%d", &iplay,&jplay);
 							//printf("\nEscolhido: %d-%d\n", iplay, jplay);
 							//sleep(3);
-							while(iplay<=0 || iplay>3 || jplay<=0 || jplay>3 || Busy(iplay,jplay))
+							while(iplay<=0 || iplay>3 || jplay<=0 || jplay>3 || Busy(iplay-1,jplay-1))
 								{
 									LimpaTela();
 									GameShow();
