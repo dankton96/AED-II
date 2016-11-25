@@ -59,22 +59,38 @@ typedef class Partida
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		bool Win()
 			{
-			       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='x'){p1++; return true;} else 
-			       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='x'){p1++; return true;} else
-			       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='x'){p1++; return true;} else
-			       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='x'){p1++; return true;} else
-			       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='x'){p1++; return true;} else
-			       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='x'){p1++; return true;} else
-			       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='x'){p1++; return true;} else
-			       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='x'){p1++; return true;} else
-			       if(rodada->map[0][0]==rodada->map[0][1]==rodada->map[0][2]=='o'){p2++; return true;} else
-			       if(rodada->map[1][0]==rodada->map[1][1]==rodada->map[1][2]=='o'){p2++; return true;} else
-			       if(rodada->map[2][0]==rodada->map[2][1]==rodada->map[2][2]=='o'){p2++; return true;} else
-			       if(rodada->map[0][0]==rodada->map[1][0]==rodada->map[2][0]=='o'){p2++; return true;} else
-			       if(rodada->map[0][1]==rodada->map[1][1]==rodada->map[2][1]=='o'){p2++; return true;} else
-			       if(rodada->map[0][2]==rodada->map[1][2]==rodada->map[2][2]=='o'){p2++; return true;} else
-			       if(rodada->map[0][0]==rodada->map[1][1]==rodada->map[2][2]=='o'){p2++; return true;} else
-			       if(rodada->map[0][2]==rodada->map[1][1]==rodada->map[2][0]=='o'){p2++; return true;}
+			       if(rodada->map[0][0]==rodada->map[0][1] && rodada->map[0][1]==rodada->map[0][2] && rodada->map[0][2]=='x')
+			       {p1++; return true;} else 
+			       if(rodada->map[1][0]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[1][2] && rodada->map[1][2]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[2][0]==rodada->map[2][1] && rodada->map[2][1]==rodada->map[2][2] && rodada->map[2][2]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[0][0]==rodada->map[1][0] && rodada->map[1][0]==rodada->map[2][0] && rodada->map[2][0]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[0][1]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[2][1] && rodada->map[2][1]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[0][2]==rodada->map[1][2] && rodada->map[1][2]==rodada->map[2][2] && rodada->map[2][2]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[0][0]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[2][2] && rodada->map[2][2]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[0][2]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[2][0] && rodada->map[2][0]=='x')
+			       {p1++; return true;} else
+			       if(rodada->map[0][0]==rodada->map[0][1] && rodada->map[0][1]==rodada->map[0][2] && rodada->map[0][2]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[1][0]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[1][2] && rodada->map[1][2]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[2][0]==rodada->map[2][1] && rodada->map[2][1]==rodada->map[2][2] && rodada->map[2][2]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[0][0]==rodada->map[1][0] && rodada->map[1][0]==rodada->map[2][0] && rodada->map[2][0]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[0][1]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[2][1] && rodada->map[2][1]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[0][2]==rodada->map[1][2] && rodada->map[1][2]==rodada->map[2][2] && rodada->map[2][2]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[0][0]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[2][2] && rodada->map[2][2]=='o')
+			       {p2++; return true;} else
+			       if(rodada->map[0][2]==rodada->map[1][1] && rodada->map[1][1]==rodada->map[2][0] && rodada->map[2][0]=='o')
+			       {p2++; return true;}
 			       else return false;
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,10 +103,10 @@ typedef class Partida
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		bool GameOver()
 			{
-				if(Win()){cout<<"Vitoria"<<endl;nrodadas++;return true;}
-				if(Draw()){cout<<"Empate"<<endl;nrodadas++;return true;}
-				else return false;
-				//return Win() || Draw();
+				//if(Win()){cout<<"Vitoria"<<endl;nrodadas++;return true;}
+				//if(Draw()){cout<<"Empate"<<endl;nrodadas++;return true;}
+				//else return false;
+				return Win() || Draw();
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		void GameShow()
@@ -239,4 +255,3 @@ int main(void)
 Partida game;
 game.Start();
 }
-
